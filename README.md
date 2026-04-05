@@ -34,6 +34,25 @@ This project combines three ideas into one:
 - Can we predict short-term performance drops from schedule and workload context?
 - Which player profiles appear most vulnerable to schedule compression?
 
+## 📊 Key Insights
+
+- Player scoring output (`PTS`) is the strongest predictor of performance dips
+- Custom workload score significantly impacts fatigue modeling
+- Recent performance trends (rolling averages) are critical indicators
+
+## 🧠 Model Insight
+
+The model shows that fatigue is not just about minutes played, but a combination of:
+
+- Short rest periods
+- Back-to-back games
+- Accumulated workload
+- Recent performance trends
+
+## 📈 Feature Importance
+
+![Feature Importance](reports/feature_importance.png)
+
 ## Target outcomes
 
 This project focuses on two modeling tasks:
