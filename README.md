@@ -26,6 +26,16 @@ This project combines three ideas into one:
 3. **Player Fatigue Prediction Pipeline**  
    Build a reusable end-to-end pipeline for ingesting NBA data, engineering workload features, training models, and generating predictions.
 
+## Project objective
+
+The goal of this project is to identify whether a player is at risk of a performance dip based on:
+
+- recent scoring trend
+- recent minutes load
+- days of rest
+- back-to-back schedule pressure
+- a custom workload score
+
 ## Core questions
 
 - Does playing in back-to-backs increase next-game performance decline?
@@ -138,6 +148,47 @@ Examples of planned features:
 7. Evaluate model performance
 8. Visualize fatigue-risk patterns
 9. Build a small Streamlit app for interactive exploration
+
+## Pipeline overview
+
+1. Pull real NBA player game logs
+2. Clean and standardize columns
+3. Engineer fatigue-related features
+4. Create a performance dip target
+5. Train a Random Forest model
+6. Evaluate predictions
+7. Visualize feature importance
+
+## Key engineered features
+
+- `days_rest`
+- `is_back_to_back`
+- `rolling_pts_3`
+- `rolling_min_3`
+- `rolling_ast_3`
+- `rolling_reb_3`
+- `workload_score`
+
+## Model results
+
+Current model performance on the real multi-player dataset:
+
+- Accuracy: **0.87**
+- Balanced precision / recall across both classes
+- Strong early signal despite a relatively small sample
+
+## Top insights
+
+The most important features in the current model were:
+
+1. `pts`
+2. `workload_score`
+3. `rolling_pts_3`
+
+This suggests that:
+- recent scoring level matters
+- cumulative workload matters
+- short-term form matters
 
 ## Repository structure
 
