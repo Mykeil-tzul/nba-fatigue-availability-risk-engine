@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+plotly
+streamlit
+requests
+beautifulsoup4
+lxml
+joblib
+jupyter
+pytest
+nba_api
