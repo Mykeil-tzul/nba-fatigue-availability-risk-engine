@@ -1,69 +1,66 @@
 # NBA Player Fatigue + Availability Risk Engine
 
-A sports analytics and machine learning project that predicts short-term performance dips and workload-related availability risk in NBA players using game logs, schedule density, travel burden, rest patterns, and rolling performance baselines.
+A production-style sports analytics and machine learning project that predicts short-term performance dips and fatigue-related risk in NBA players using workload, schedule density, and recent performance trends.
+
+## Live Application
+
+👉 Interactive dashboard built with Streamlit - 
+
+- Select any player
+- View fatigue risk + dip probability
+- Explore workload trends over time
+- Identify high-risk games
+
+## 🎥 App Demo
+
+![App Demo](reports/app_demo.gif)
 
 ## Why I built this
 
-As a former professional basketball player, I wanted to quantify something players feel in real life: fatigue is cumulative, travel matters, compressed schedules matter, and not all minutes cost the same.
+As a former professional basketball player, I wanted to quantify something players feel in real life: fatigue is cumulative, travel matters, schedule density matter, and not all minutes cost the same.
 
-This project turns that lived experience into a data product:
+This project turns that lived experience into a data product + predictive system:
 - a fatigue risk engine
 - a performance dip prediction model
 - a reusable player-level prediction pipeline
 
 The goal is to show how basketball knowledge, data science, and machine learning engineering can come together in one real-world project.
 
-## Project goals
+## What This Project Does
 
-This project combines three ideas into one:
+This system combines:
 
 1. **NBA Fatigue Risk Engine**  
-   Estimate how schedule density, minutes load, and travel stress affect player performance.
+   Estimate player fatigue based on minutes load, rest days, back-to-backs and rolling workload.
 
-2. **Performance Degradation Under Schedule Density**  
-   Predict whether a player is likely to experience a next-game performance dip.
+2. **Performance Dip Prediction Model**  
+   Predict whether a player will underperform next game.
 
-3. **Player Fatigue Prediction Pipeline**  
-   Build a reusable end-to-end pipeline for ingesting NBA data, engineering workload features, training models, and generating predictions.
+3. **End-to-End Data Pipeline**  
+   Fully reproductive workflow:
+   ingest → clean → feature engineer → train → predict → visualize
 
-## Project objective
+## Key Insights
 
-The goal of this project is to identify whether a player is at risk of a performance dip based on:
+- Scoring output (PTS) is the strongest predictor of dips
+- Workload score significantly impacts fatigue risk
+- Rolling performance trends are critical signals
+- Fatigue is multi-factor, not just minutes played
 
-- recent scoring trend
-- recent minutes load
-- days of rest
-- back-to-back schedule pressure
-- a custom workload score
+## Model Insight
 
-## Core questions
-
-- Does playing in back-to-backs increase next-game performance decline?
-- How much do rolling minutes and recent workload affect efficiency?
-- Does travel burden raise fatigue-related risk?
-- Can we predict short-term performance drops from schedule and workload context?
-- Which player profiles appear most vulnerable to schedule compression?
-
-## 📊 Key Insights
-
-- Player scoring output (`PTS`) is the strongest predictor of performance dips
-- Custom workload score significantly impacts fatigue modeling
-- Recent performance trends (rolling averages) are critical indicators
-
-## 🧠 Model Insight
-
-The model shows that fatigue is not just about minutes played, but a combination of:
+Fatigue is driven by a combination of:
 
 - Short rest periods
 - Back-to-back games
 - Accumulated workload
 - Recent performance trends
 
-## 📈 Feature Importance
+## Feature Importance
 
-![Feature Importance](reports/feature_importance.png)
+![alt text](reports/feature_importance.png)
 
-## Target outcomes
+## Modeling Objectives
 
 This project focuses on two modeling tasks:
 
@@ -76,14 +73,30 @@ Example definitions may include:
 - Game Score below expected level
 - meaningful drop in all-around production
 
-### 2) Risk scoring / regression
-Estimate a continuous **fatigue or availability risk score** based on:
+### 2) Risk Scoring
+Estimate a continuous **fatigue or availability risk score** (0-100) based on:
 - recent minutes
 - days of rest
 - back-to-back flags
-- 3 games in 4 nights / 4 games in 6 nights
+- 3 games in 4 nights / 4 games in 6 nights (workload)
 - travel burden
 - age and experience curves
+
+## Model Performace
+
+- Accuracy: 0.87
+- Balanced precision/recall
+- Strong early signal with limited dataset
+
+## Key Features Engineered 
+
+- days_rest
+- is_back_to_back
+- rolling_pts_3
+- rolling_min_3
+- rolling_ast_3
+- rolling_reb_3
+- workload_score
 
 ## Tech stack
 
@@ -92,7 +105,7 @@ Estimate a continuous **fatigue or availability risk score** based on:
 - **numpy**
 - **scikit-learn**
 - **SQL**
-- **Matplotlib / Plotly**
+- **Matplotlib**
 - **Streamlit**
 - **Git + GitHub**
 
@@ -104,38 +117,22 @@ Planned data sources include:
 - Publicly available schedule data
 - Public injury / availability reports where appropriate
 
-## Feature ideas
+## Pipeline Overview 
 
-Examples of planned features:
+Data Collection → Cleaning → Feature Engineering → Labeling
+→ Model Training → Evaluation → Predictions → Visualization
 
-### Schedule load
-- back-to-back indicator
-- games in last 3 days
-- games in last 5 days
-- 3-in-4 nights
-- 4-in-6 nights
-- days of rest
+## StreamLit Application
+This project includes a fully interactive dashboard:
 
-### Workload
-- minutes last game
-- rolling average minutes
-- rolling points
-- rolling assists
-- rolling rebounds
-- rolling shooting efficiency
-- rolling Game Score
-
-### Travel and context
-- home vs away
-- road trip length
-- travel distance between games
-- opponent strength proxy
-
-### Player profile
-- age
-- years in league
-- position group
-- season-to-date workload
+Features:
+Player selection dropdown
+Fatigue Risk Score (0–100)
+Dip Probability (%)
+Risk classification (Low / Medium / High)
+Fatigue trend visualization
+Recent game snapshot
+Top risky games detection
 
 ## Planned workflow
 
@@ -149,46 +146,14 @@ Examples of planned features:
 8. Visualize fatigue-risk patterns
 9. Build a small Streamlit app for interactive exploration
 
-## Pipeline overview
+## Business/Basketball Impact
 
-1. Pull real NBA player game logs
-2. Clean and standardize columns
-3. Engineer fatigue-related features
-4. Create a performance dip target
-5. Train a Random Forest model
-6. Evaluate predictions
-7. Visualize feature importance
+This type of system can be used by:
 
-## Key engineered features
-
-- `days_rest`
-- `is_back_to_back`
-- `rolling_pts_3`
-- `rolling_min_3`
-- `rolling_ast_3`
-- `rolling_reb_3`
-- `workload_score`
-
-## Model results
-
-Current model performance on the real multi-player dataset:
-
-- Accuracy: **0.87**
-- Balanced precision / recall across both classes
-- Strong early signal despite a relatively small sample
-
-## Top insights
-
-The most important features in the current model were:
-
-1. `pts`
-2. `workload_score`
-3. `rolling_pts_3`
-
-This suggests that:
-- recent scoring level matters
-- cumulative workload matters
-- short-term form matters
+NBA teams → player load management
+Sports betting platforms → performance forecasting
+Fantasy sports → player projections
+Media → storytelling + analytics
 
 ## Repository structure
 
