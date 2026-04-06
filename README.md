@@ -17,7 +17,7 @@ A production-style sports analytics and machine learning project that predicts s
 
 ## Why I built this
 
-As a former professional basketball player, I wanted to quantify something players feel in real life: fatigue is cumulative, travel matters, schedule density matter, and not all minutes cost the same.
+As a former professional basketball player, I wanted to quantify something players feel in real life: fatigue is cumulative, travel matters, schedule density matters, and not all minutes cost the same.
 
 This project turns that lived experience into a data product + predictive system:
 - a fatigue risk engine
@@ -37,7 +37,7 @@ This system combines:
    Predict whether a player will underperform next game.
 
 3. **End-to-End Data Pipeline**  
-   Fully reproductive workflow:
+   Fully reproducible workflow:
    ingest → clean → feature engineer → train → predict → visualize
 
 ## Key Insights
@@ -82,7 +82,7 @@ Estimate a continuous **fatigue or availability risk score** (0-100) based on:
 - travel burden
 - age and experience curves
 
-## Model Performace
+## Model Performance
 
 - Accuracy: 0.87
 - Balanced precision/recall
@@ -122,7 +122,7 @@ Planned data sources include:
 Data Collection → Cleaning → Feature Engineering → Labeling
 → Model Training → Evaluation → Predictions → Visualization
 
-## StreamLit Application
+## Streamlit Application
 This project includes a fully interactive dashboard:
 
 Features:
